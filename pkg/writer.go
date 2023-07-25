@@ -1,4 +1,4 @@
-package bitstream
+package pkg
 
 import "fmt"
 
@@ -7,7 +7,7 @@ import "fmt"
 // of the bits is in a byte slice.
 type Writer struct {
 	// all of the bytes written by this Writer
-	bytes     []byte
+	bytes []byte
 
 	// bitBuffer is a single byte used for storing individual bits that are written.
 	// When a byte-boundary is passed, this byte is appended to the bytes slice
@@ -21,7 +21,6 @@ type Writer struct {
 	// endianness determines the order in which bits are written into the bitBuffer
 	endianness
 }
-
 
 // Bytes returns a copy of the byte buffer
 func (w *Writer) Bytes() []byte {
@@ -40,13 +39,13 @@ func (w *Writer) Bytes() []byte {
 func (w *Writer) Write(args ...interface{}) (bitsWritten int, err error) {
 	for idx := range args {
 		switch v := args[idx].(type) {
-		case byte :
+		case byte:
 			if num, err := w.WriteByte(v); err != nil {
 				break
 			} else {
 				bitsWritten += num
 			}
-		case []byte :
+		case []byte:
 			if num, err := w.WriteBytes(v); err != nil {
 				break
 			} else {
@@ -124,7 +123,7 @@ func (w *Writer) WriteBit(b bool) (bitsWritten int, err error) {
 	w.bitOffset++
 
 	if b {
-		w.bitBuffer |= 1<<shift
+		w.bitBuffer |= 1 << shift
 	}
 
 	if w.bitOffset >= bitsPerByte {

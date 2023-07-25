@@ -1,4 +1,4 @@
-package bitstream
+package pkg
 
 import (
 	"crypto/rand"
@@ -382,7 +382,7 @@ func TestBitstream_Copy(t *testing.T) {
 		0b_0000_0010,
 		0b_1111_0011,
 		0b_0000_0100,
-		)
+	)
 
 	_ = original.Next(8).Bits() // skip
 

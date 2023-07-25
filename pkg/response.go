@@ -1,4 +1,4 @@
-package bitstream
+package pkg
 
 // Response represents a response of Reader
 type Response struct {

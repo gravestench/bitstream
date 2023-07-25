@@ -1,4 +1,4 @@
-package bitstream
+package pkg
 
 import "math"
 

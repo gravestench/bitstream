@@ -1,6 +1,4 @@
-// Package bitstream provides a stream reader and writer implementation that can
-// read/write data that is not byte aligned.
-package bitstream
+package pkg
 
 import (
 	"bytes"
@@ -257,8 +255,9 @@ func (bs *Reader) SetBigEndian() *Reader {
 
 // Next sets the integer count for the next "unit" of data read.
 // ex:
-//		instance.Next(2).Bytes().AsUInt64() will read 2 bytes and interpret as uint64
-//		instance.Next(4).Bits().AsInt() will read 4 bits
+//
+//	instance.Next(2).Bytes().AsUInt64() will read 2 bytes and interpret as uint64
+//	instance.Next(4).Bits().AsInt() will read 4 bits
 func (bs *Reader) Next(count int) *Reader {
 	bs.unitsToRead = count
 

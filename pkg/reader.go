@@ -15,10 +15,15 @@ const (
 func NewReader(args ...interface{}) *Reader {
 	bs := &Reader{}
 
-	if len(args) > 0 {
-		if rs, good := args[0].(io.ReadSeeker); good {
-			bs.stream = rs
-		}
+	if len(args) < 1 {
+		return bs
+	}
+
+	switch v := args[0].(type) {
+	case io.ReadSeeker:
+		bs.stream = v
+	case []byte:
+		bs.stream = bytes.NewReader(v)
 	}
 
 	return bs

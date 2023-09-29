@@ -1,6 +1,7 @@
 package pkg
 
 import (
+	"bytes"
 	"crypto/rand"
 	"errors"
 	"io"
@@ -21,6 +22,16 @@ func TestBitStream_NilData(t *testing.T) {
 
 	if bit {
 		t.Error("expecting false bit value read from nil data source")
+	}
+}
+
+func TestBitStream_FromReader(t *testing.T) {
+	data := []byte{0x01, 0x02, 0x03, 0x04, 0x01, 0x02, 0x03, 0x04}
+	buf := bytes.NewReader(data)
+	bs := NewReader(buf)
+
+	if bs.stream == nil {
+		t.Fatalf("stream is nil")
 	}
 }
 

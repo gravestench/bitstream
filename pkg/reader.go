@@ -22,6 +22,9 @@ func NewReader(args ...interface{}) *Reader {
 	switch v := args[0].(type) {
 	case io.ReadSeeker:
 		bs.stream = v
+	case io.Reader:
+		r, _ := io.ReadAll(v)
+		bs.stream = bytes.NewReader(r)
 	case []byte:
 		bs.stream = bytes.NewReader(v)
 	}

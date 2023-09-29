@@ -13,7 +13,7 @@ type (
 )
 
 func NewReader(args ...interface{}) *Reader {
-	return pkg.NewReader(args)
+	return pkg.NewReader(args...)
 }
 
 func ReaderFromBytes(data ...byte) *Reader {
